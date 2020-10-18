@@ -11,7 +11,7 @@ require 'java_serialization/block_data_short'
 require 'java_serialization/block_data_long'
 
 module JavaSerialization
-  class ObjectOrBlockdata < BinData::Record
+  class ObjectOrBlockData < BinData::Record
     TC_NULL = 0x70
     TC_REFERENCE = 0x71
     TC_CLASSDESC = 0x72

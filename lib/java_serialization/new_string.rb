@@ -8,19 +8,10 @@ module JavaSerialization
     endian :big
     java_string :val
 
-    def get
-      self.val
-    end
-
-    def set(v)
-      if v.is_a? Hash
-        handle_manager = v[:handle_manager]
-        self.val = JavaString::new(v[:value])
-        handle_manager.next_handle!(:"string_#{v[value]}", self.val)
-      else
-        self.val = v
-      end
-      self
+    def of(value, handle_manager:)
+      new_string = NewString::new(value)
+      handle_manager.next_handle!(:"string_#{value}", val: new_string)
+      new_string
     end
   end
 end

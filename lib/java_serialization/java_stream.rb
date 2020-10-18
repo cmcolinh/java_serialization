@@ -7,6 +7,6 @@ module JavaSerialization
     endian :big
     uint16 :magic, asserted_value: 0xaced
     uint32 :version, asserted_value: 0x0005
-    contents :contents
+    object_or_block_data :contents
   end
 end

@@ -13,8 +13,8 @@ module JavaSerialization
     java_string :class_name
     uint64 :serial_version_uid
     handle_manager :handle_manager
-    new_handle :new_handle, initial_value: ->{
-      NewHandle::new(handle_manager.next_handle!(:"class_description_#{class_name}", self))}
+    new_handle :new_handle, initial_value: ->{NewHandle::new(handle_manager.next_handle!(
+      :"class_description#{class_name.to_s.gsub(/^.*\./, '').gsub(/([A-Z])/, '_\1').downcase}", self))}
     class_desc_info :class_desc_info
   end
 end

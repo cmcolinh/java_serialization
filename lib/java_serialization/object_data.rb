@@ -5,6 +5,6 @@ require 'java_serialization/object_data/boolean'
 
 module JavaSerialization
   class ObjectData < BinData::Choice
-    boolean 'Boolean'
+    boolean 'java.lang.Boolean'
   end
 end

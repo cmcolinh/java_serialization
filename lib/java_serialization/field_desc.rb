@@ -23,5 +23,18 @@ module JavaSerialization
         'Z' => :primitive_desc, #'Z' for boolean
         '[' => :object_desc #'[' for array
       }
+
+    def self.of(field_as_array:, handle_manager:)
+      typecode, field_name, field_class = field_as_array
+      if ['B', 'C', 'D', 'F', 'I', 'J', 'S', 'Z'].include?(typecode)
+        FieldDesc::new(
+          typecode: typecode,
+          desc: PrimitiveDesc::new(field_name: field_name))
+      elsif ['L', '['].include?(typecode)
+        FieldDesc::new(
+          typecode: typecode,
+          desc: ObjectDesc::of(field_as_array, handle_manager: handle_manager))
+      end
+    end
   end
 end
