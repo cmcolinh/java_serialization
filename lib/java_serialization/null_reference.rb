@@ -3,6 +3,12 @@
 require 'bindata'
 
 module JavaSerialization
-  class NullReference < BinData::Record
+  class NullReference < BinData::Primitive
+    def get
+      "TC_NULL"
+    end
+
+    def set(v)
+    end
   end
 end

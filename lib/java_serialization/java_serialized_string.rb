@@ -10,7 +10,7 @@ module JavaSerialization
     uint8 :type_marker
     choice :val,
       selection: :type_marker,
-      choices: {0x70 => :null_reference, 0x71 => :prev_object, 0x74 => :new_string}
+      choices: {0x70 => :null_reference, 0x71 => :prev_object, 0x74 => :java_string}
 
     def self.of(handle_manager:, value:)
       if value.nil?
@@ -20,7 +20,7 @@ module JavaSerialization
       else
         JavaSerializedString::new(
           type_marker: 0x74,
-          val: NewString::of(handle_manager: handle_manager, value: value))
+          val: NewString::of(value, handle_manager: handle_manager))
       end
     end
   end

@@ -4,23 +4,22 @@ require 'bindata'
 require 'java_serialization/meta_value'
 
 module JavaSerialization
-  class PrevObject < BinData::Primitive
+  class PrevObject < BinData::Record
     endian :big
     uint32 :handle_id
     meta_value :val
 
     def get
-      self.val.get
+      val.get
     end
 
-    def set(v)
-      if v.is_a?(Hash)
-        handle_id = v[:handle_id]
-        value = MetaValue::new(v[:value])
-        self.handle_id = handle_id
-        self.val = value
-      end
-      self
+    def to_s
+      val.get.to_s
+    end
+
+    def self.of(handle_id:, value:)
+      val = MetaValue::new(value)
+      PrevObject::new(handle_id: handle_id, val: val)
     end
   end
 end

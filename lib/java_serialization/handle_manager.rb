@@ -24,7 +24,7 @@ module JavaSerialization
 
     def next_handle!(key, val:)
       init
-      prev_object = PrevObject::new.set(handle_id: @next_handle, value: val)
+      prev_object = PrevObject::of(handle_id: @next_handle, value: val)
       @prev_objects_by_key[key] = prev_object
       @objects_by_handle[@next_handle] = val
       @next_handle += 1

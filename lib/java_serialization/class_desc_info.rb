@@ -15,6 +15,7 @@ module JavaSerialization
 
     def self.of(class_desc_flags:, fields_as_array:, handle_manager:,
         super_class_desc: ClassDesc::new(type_marker: 0x70, val: NullReference::new))
+      puts super_class_desc
       ClassDescInfo::new(
         class_desc_flags: class_desc_flags,
         class_desc_fields: ClassDescFields::new(field_desc: fields_as_array.map{|field_as_array|

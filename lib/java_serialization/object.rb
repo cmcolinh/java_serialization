@@ -27,7 +27,7 @@ module JavaSerialization
       choices: {
         TC_OBJECT => :new_object,
         TC_ARRAY => :new_array,
-        TC_STRING => :new_string,
+        TC_STRING => :java_string,
         TC_CLASSDESC => :new_class_desc,
         TC_REFERENCE => :prev_object,
         TC_NULL => :null_reference
